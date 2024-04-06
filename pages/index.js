@@ -41,7 +41,7 @@ export default function Home({ countries }) {
   );
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   // SSR을 위해 서버측에서 페이지 컴포넌트에게 전달할 데이터를 설정하는 함수
   // 반드시 props 객체를 반환해야됨
 
