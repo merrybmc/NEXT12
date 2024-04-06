@@ -1,5 +1,6 @@
 import { fetchCountries } from '@/api';
-import Link from 'next/link';
+import CountryList from '../components/CountryList';
+import SearchBar from '@/components/SearchBar';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
@@ -11,33 +12,11 @@ export default function Home({ countries }) {
     router.push('/search');
   };
 
-  // 브라우저에서 clg를 하기 위함
-  useEffect(() => {
-    console.log(countries);
-  }, []);
-
   return (
-    <div>
-      Home Page
-      <div>
-        <button onClick={onClickButton}>페이지 이동</button>
-        {/* <Link href={'/search'}>Search Page 이동</Link> */}
-      </div>
-      <div>
-        <Link
-          href={{
-            pathname: '/country/[id]',
-            query: { id },
-          }}
-        >
-          페이지로 이동
-        </Link>
-        {/* <Link href={`/country/${id}`}>페이지로 이동</Link> */}
-      </div>
-      {countries.map((contry, index) => {
-        return <div key={index}>{contry.commonName} </div>;
-      })}
-    </div>
+    <>
+      <SearchBar />
+      <CountryList countries={countries} />
+    </>
   );
 }
 

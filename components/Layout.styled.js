@@ -20,6 +20,9 @@ export const Main = styled.main`
   max-width: 700px;
   margin: 0 auto;
   padding: 80px 10px;
+
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Footer = styled.footer`

@@ -9,11 +9,11 @@ export default function Search() {
   const { q } = router.query;
 
   // CSR 렌더링 방식 적용
-  const [contries, setCountries] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
   const setData = async () => {
     const data = await fetchSearchResults(q);
-    setCountries(data);
+    setSearchResults(data);
   };
 
   useEffect(() => {
