@@ -5,6 +5,10 @@ export const Footer = styled.footer`
   padding-top: 20px;
   margin-top: 20px;
   text-align: center;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: gray;
   font-size: 14px;
 `;

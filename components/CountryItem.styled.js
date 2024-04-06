@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Image from 'next/image';
 
 export const Container = styled.div`
   width: 220px;
@@ -8,7 +9,7 @@ export const Container = styled.div`
   cursor: pointer;
 `;
 
-export const FlagImg = styled.img`
+export const FlagImg = styled(Image)`
   width: 100%;
   height: 150px;
   object-fit: cover;

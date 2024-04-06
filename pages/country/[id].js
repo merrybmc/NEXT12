@@ -1,6 +1,8 @@
 import { fetchCountry } from '@/api';
 import { useRouter } from 'next/router';
 import React from 'react';
+import * as S from './[id].styled';
+import SubLayout from '@/components/SubLayout';
 
 export default function Country({ country }) {
   // 동적 라우팅된 쿼리 id값 추출
@@ -17,11 +19,38 @@ export default function Country({ country }) {
   }
 
   return (
-    <div>
-      {country.commonName} {country.officalName}
-    </div>
+    <S.Container>
+      <S.Header>
+        <S.CommonName>
+          {country.flagEmoji}&nbsp;{country.commonName}
+        </S.CommonName>
+        <S.CommonName>{country.officialName}</S.CommonName>
+      </S.Header>
+
+      <S.FlagImg src={country.flagImg} width={100} height={100} />
+
+      <S.Body>
+        <div>
+          <b>코드 :</b>&nbsp;{country.code}
+        </div>
+        <div>
+          <b>수도 :</b>&nbsp;{country.capital.join(', ')}
+        </div>
+        <div>
+          <b>지역 :</b>&nbsp;{country.region}
+        </div>
+        <div>
+          <b>지도 :</b>&nbsp;
+          <a target='_blank' href={country.googleMapURL}>
+            {country.googleMapURL}
+          </a>
+        </div>
+      </S.Body>
+    </S.Container>
   );
 }
+
+// Country.Layout = SubLayout;
 
 export const getStaticPaths = async () => {
   return {

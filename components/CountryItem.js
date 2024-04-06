@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import * as S from './CountryItem.styled';
+import Image from 'next/image';
 
 export default function CountryItem({
   code,
@@ -18,7 +19,7 @@ export default function CountryItem({
 
   return (
     <S.Container onClick={onClickItem}>
-      <S.FlagImg src={flagImg} />
+      <S.FlagImg src={flagImg} width={150} height={150} />
       <S.Content>
         <S.Name>
           {flagEmoji} {commonName}
