@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import * as S from './[id].styled';
 import SubLayout from '@/components/SubLayout';
+import Head from 'next/head';
 
 export default function Country({ country }) {
   // 동적 라우팅된 쿼리 id값 추출
@@ -10,43 +11,63 @@ export default function Country({ country }) {
   const { id } = router.query;
 
   if (router.isFallback) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Head>
+          <title>LARAS 🌍 </title>
+        </Head>
+        Loading...
+      </div>
+    );
   }
 
   // 존재하지 않는 국가 예외처리
   if (!country) {
-    return <div>존재하지 않는 국가입니다.</div>;
+    return (
+      <div>
+        <Head>
+          <title>LARAS 🌍 </title>
+        </Head>
+        존재하지 않는 국가입니다.
+      </div>
+    );
   }
 
   return (
-    <S.Container>
-      <S.Header>
-        <S.CommonName>
-          {country.flagEmoji}&nbsp;{country.commonName}
-        </S.CommonName>
-        <S.CommonName>{country.officialName}</S.CommonName>
-      </S.Header>
+    <>
+      <Head>
+        <title>{country.commonName} 국가 정보 조회 LARAS 🌍 </title>
+      </Head>
 
-      <S.FlagImg src={country.flagImg} width={100} height={100} />
+      <S.Container>
+        <S.Header>
+          <S.CommonName>
+            {country.flagEmoji}&nbsp;{country.commonName}
+          </S.CommonName>
+          <S.CommonName>{country.officialName}</S.CommonName>
+        </S.Header>
 
-      <S.Body>
-        <div>
-          <b>코드 :</b>&nbsp;{country.code}
-        </div>
-        <div>
-          <b>수도 :</b>&nbsp;{country.capital.join(', ')}
-        </div>
-        <div>
-          <b>지역 :</b>&nbsp;{country.region}
-        </div>
-        <div>
-          <b>지도 :</b>&nbsp;
-          <a target='_blank' href={country.googleMapURL}>
-            {country.googleMapURL}
-          </a>
-        </div>
-      </S.Body>
-    </S.Container>
+        <S.FlagImg src={country.flagImg} width={100} height={100} />
+
+        <S.Body>
+          <div>
+            <b>코드 :</b>&nbsp;{country.code}
+          </div>
+          <div>
+            <b>수도 :</b>&nbsp;{country.capital.join(', ')}
+          </div>
+          <div>
+            <b>지역 :</b>&nbsp;{country.region}
+          </div>
+          <div>
+            <b>지도 :</b>&nbsp;
+            <a target='_blank' href={country.googleMapURL}>
+              {country.googleMapURL}
+            </a>
+          </div>
+        </S.Body>
+      </S.Container>
+    </>
   );
 }
 

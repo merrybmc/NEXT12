@@ -2,6 +2,7 @@ import { fetchSearchResults } from '@/api';
 import CountryList from '@/components/CountryList';
 import SearchBar from '@/components/SearchBar';
 import SubLayout from '@/components/SubLayout';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
@@ -26,6 +27,9 @@ export default function Search() {
 
   return (
     <div>
+      <Head>
+        <title>NARAS 검색</title>
+      </Head>
       <SearchBar q={q} />
       <CountryList countries={searchResults} />
     </div>
